@@ -24,6 +24,13 @@ namespace Astrion
             character.radius = .35f;
             character.center = new Vector3(0f, .9f, 0f);
             player.AddComponent<AstrionThirdPersonController>();
+            var body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            body.name = "Explorador";
+            body.transform.SetParent(player.transform, false);
+            body.transform.localPosition = new Vector3(0f, .9f, 0f);
+            body.transform.localScale = new Vector3(.72f, .9f, .72f);
+            Object.Destroy(body.GetComponent<Collider>());
+            body.GetComponent<Renderer>().material = MakeMaterial(new Color(.18f, .24f, .34f));
 
             var cameraObject = new GameObject("Astrion Camera");
             var camera = cameraObject.AddComponent<Camera>();
